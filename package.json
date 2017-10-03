@@ -1,0 +1,11 @@
+{
+  "name": "2ptth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "Foster Hersey",
+  "license": "MIT",
+  "devDependencies": {
+    "selfsigned": "^1.10.1"
+  }
+}
