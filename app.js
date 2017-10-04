@@ -6,7 +6,7 @@ const { _connectionListener: httpConnectionListener } = require('http');
 const tls = require('tls');
 const debug = require('util').debuglog('appjs');
 
-process.argv.push('--self-signed');
+// process.argv.push('--self-signed');
 const { key, cert } = (() => {
     if ( process.argv.includes('--self-signed') ) {
         const { 'private': key, cert } =  require('selfsigned').generate();
@@ -62,22 +62,3 @@ server.on('unknownProtocol', (socket) => {
     }
 });
 server.listen(8080);
-
-//// CLIENT
-
-const tlsOutgoingConnection = tls.connect({ 'host': 'localhost', 'port': 8080 });
-tlsOutgoingConnection.on('secureConnect', () => {
-    const serverSession = new ServerHttp2Session({}, tlsOutgoingConnection);
-    serverSession.on('stream', (stream, headers) => {
-        if ( headers[':method'] === 'POST' ) {
-            debug('a post. but is there an echo in here?');
-            stream.respond({ ':status': 200 });
-            stream.pipe(stream);
-        }
-        else {
-            debug('handled request', headers);
-            stream.respond({ ':status': 200, });
-            stream.end('Transmission is possible!');
-        }
-    });
-});
