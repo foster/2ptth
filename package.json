@@ -1,10 +1,10 @@
 {
-  "name": "2ptth",
+  "name": "@foster/2ptth",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server/app.js",
   "author": "Foster Hersey",
-  "license": "MIT",
+  "license": "CC0-1.0",
   "devDependencies": {
     "selfsigned": "^1.10.1"
   }
